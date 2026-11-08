@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karla & Erick | Nuestra Boda</title>
+    <!-- Tipografías -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Librería de animaciones AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0b2559;
+            --white: #ffffff;
+            --light-bg: #f2f4f8;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* 1. SECCIÓN PORTADA */
+        .hero {
+            background-color: var(--navy);
+            padding: 0 0 60px 0; /* Sin espacio arriba para que la foto toque el borde */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* FOTO CON CURVA SUPERIOR EXACTA A LA REFERENCIA */
+        .photo-container {
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            /* Aquí está el truco: curvamos las esquinas de ABAJO para hacer el óvalo invertido */
+            border-bottom-left-radius: 250px;
+            border-bottom-right-radius: 250px;
+            /* Y mantenemos las esquinas de arriba rectas para que creen la curva superior */
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .subtitle-header {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .intro-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 360px;
+            margin: 0 auto 30px auto;
+            font-weight: 300;
+        }
+
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin: 10px 0;
+        }
+
+        .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin: 5px 0;
+            display: block;
+        }
+
+        .date-badge {
+            margin-top: 35px;
+            display: inline-block;
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 10px 30px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .countdown-header {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            margin-top: 50px;
+            color: var(--white);
+        }
+
+        /* 2. SECCIÓN BLANCA CON CURVA (PADRES Y BENDICIÓN) */
+        .white-section-wrapper {
+            background-color: var(--navy);
+            position: relative;
+        }
+
+        .white-card {
+            background-color: var(--light-bg);
+            color: var(--navy);
+            border-top-left-radius: 200px;
+            border-top-right-radius: 200px;
+            padding: 70px 25px 60px 25px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .blessing-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            color: var(--navy);
+        }
+
+        .parents-block {
+            margin: 25px 0;
+        }
+
+        .parent-name {
+            font-size: 0.95rem;
+            margin: 6px 0;
+            font-weight: 400;
+            color: #444;
+        }
+
+        .cross {
+            font-size: 0.8rem;
+            margin-left: 3px;
+        }
+
+        .divider-line {
+            width: 80%;
+            height: 1px;
+            background-color: #d1d5db;
+            margin: 20px auto;
+        }
+
+        .closing-invite {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.3rem;
+            margin-top: 35px;
+            line-height: 1.3;
+            color: var(--navy);
+        }
+
+        /* 3. SECCIÓN EVENTOS */
+        .events-container {
+            background-color: var(--light-bg);
+            padding: 10px 20px 80px 20px;
+        }
+
+        .events-card-box {
+            border: 2px solid var(--navy);
+            border-radius: 25px;
+            background-color: var(--white);
+            padding: 40px 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            color: var(--navy);
+        }
+
+        .event-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .event-place {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .event-city {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .event-date {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .event-time {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-map {
+            display: inline-block;
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 10px 35px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .btn-map:hover {
+            opacity: 0.9;
+        }
+
+        .event-separator {
+            height: 50px;
+        }
+
+        /* 4. SECCIÓN ASISTENCIA Y FORMULARIO */
+        .rsvp-wrapper {
+            background-color: var(--light-bg);
+        }
+
+        .rsvp-section {
+            background-color: var(--navy);
+            border-top-left-radius: 200px;
+            border-top-right-radius: 200px;
+            padding: 70px 25px 60px 25px;
+            color: var(--white);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .rsvp-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+        }
+
+        .rsvp-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 380px;
+            margin: 0 auto 30px auto;
+        }
+
+        .rsvp-subtext {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .rsvp-input {
+            width: 100%;
+            max-width: 320px;
+            padding: 14px 20px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .btn-confirm {
+            background-color: #e2e8f0;
+            color: var(--navy);
+            border: none;
+            padding: 12px 35px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-confirm:hover {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. PORTADA -->
+    <section class="hero">
+        <div class="photo-container" data-aos="fade-down" data-aos-duration="1000">
+            <!-- RECUERDA: Cambia "portada.jpg" por el nombre exacto de tu foto -->
+            <img src="imagenboda.jpg" alt="Karla & Erick">
+        </div>
+
+        <div class="subtitle-header" data-aos="fade-up" data-aos-delay="200">Nuestra Boda</div>
+        
+        <p class="intro-text" data-aos="fade-up" data-aos-delay="400">
+            Hoy celebramos el inicio de nuestra vida juntos. Nos encantaría compartir este momento tan especial contigo.
+        </p>
+
+        <div class="couple-names" data-aos="zoom-in" data-aos-delay="600">Karla</div>
+        <span class="ampersand" data-aos="fade-in" data-aos-delay="700">&</span>
+        <div class="couple-names" data-aos="zoom-in" data-aos-delay="800">Erick</div>
+
+        <div class="date-badge" data-aos="fade-up" data-aos-delay="900">
+            Sábado | 27 Febrero 2027
+        </div>
+
+        <div class="countdown-header" id="countdown-text" data-aos="fade-up" data-aos-delay="1000">Faltan 0 días</div>
+    </section>
+
+    <!-- 2. PADRES Y BENDICIÓN -->
+    <div class="white-section-wrapper">
+        <div class="white-card">
+            <div class="blessing-title" data-aos="fade-up">
+                Con la bendición de Dios<br>
+                y en compañía de nuestros padres:
+            </div>
+
+            <div class="parents-block" data-aos="fade-up" data-aos-delay="200">
+                <div class="parent-name">Flavio Villa Hernández <span class="cross">†</span></div>
+                <div class="parent-name">Manuela Larios García</div>
+            </div>
+
+            <div class="ampersand" style="color: var(--navy); font-size: 2rem;" data-aos="fade-in">&</div>
+
+            <div class="parents-block" data-aos="fade-up" data-aos-delay="300">
+                <div class="parent-name">Tomas Zavala Ortega</div>
+                <div class="parent-name">Lilia Leticia Arteaga Flores</div>
+            </div>
+
+            <div class="divider-line" data-aos="fade-in"></div>
+
+            <div class="closing-invite" data-aos="fade-up" data-aos-delay="400">
+                Nos complace invitarte a ser parte de este gran día.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. EVENTOS -->
+    <div class="events-container">
+        <div class="events-card-box" data-aos="fade-up" data-aos-duration="1000">
+            <!-- CEREMONIA -->
+            <div class="event-title">Ceremonia</div>
+            <div class="event-place">Parroquia De San Pedro Apóstol</div>
+            <div class="event-city">Nicolás Romero</div>
+            <div class="event-date">27 Febrero 2027</div>
+            <div class="event-time">3:30 pm</div>
+            <a href="https://maps.google.com" target="_blank" class="btn-map">Ver Mapa</a>
+
+            <div class="event-separator"></div>
+
+            <!-- RECEPCIÓN -->
+            <div class="event-title">Recepción</div>
+            <div class="event-place">Salon Jardin Frison</div>
+            <div class="event-date">27 Febrero 2027</div>
+            <div class="event-time">6:00 pm</div>
+            <a href="https://maps.google.com" target="_blank" class="btn-map">Ver Mapa</a>
+        </div>
+    </div>
+
+    <!-- 4. CONFIRMACIÓN (RSVP) -->
+    <div class="rsvp-wrapper">
+        <div class="rsvp-section">
+            <div class="rsvp-title" data-aos="fade-up">¿Podrás Asistir?</div>
+            <p class="rsvp-desc" data-aos="fade-up" data-aos-delay="200">
+                El amor nos reúne y queremos celebrar este momento contigo. Gracias por ser parte de nuestra historia y acompañarnos en el comienzo de esta nueva etapa.
+            </p>
+
+            <div class="date-badge" style="margin-top: 0; margin-bottom: 30px;" data-aos="fade-up" data-aos-delay="300">
+                Sábado | 27 Febrero 2027
+            </div>
+
+            <div class="countdown-header" id="countdown-text-2" style="margin-top: 0; margin-bottom: 25px;" data-aos="fade-up" data-aos-delay="400">Faltan 0 días</div>
+
+            <div class="rsvp-subtext" data-aos="fade-up">Invitación para 2 personas</div>
+
+            <form onsubmit="sendWhatsApp(event)" data-aos="fade-up" data-aos-delay="500">
+                <input type="text" id="guestName" class="rsvp-input" placeholder="Escribe tu nombre y apellido" required>
+                <br>
+                <button type="submit" class="btn-confirm">Sí, asistiré</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE AOS Y CUENTA REGRESIVA -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+
+        const weddingDate = new Date("February 27, 2027 15:30:00").getTime();
+
+        function updateDays() {
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+            
+            const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            
+            const text = daysLeft > 0 ? `Faltan ${daysLeft} días` : "¡Es hoy!";
+            document.getElementById("countdown-text").innerText = text;
+            document.getElementById("countdown-text-2").innerText = text;
+        }
+
+        updateDays();
+
+        function sendWhatsApp(event) {
+            event.preventDefault();
+            const name = document.getElementById("guestName").value;
+            const phoneNumber = "525500000000"; 
+            const message = encodeURIComponent(`Hola, soy ${name}. ¡Confirmo mi asistencia a la boda!`);
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
